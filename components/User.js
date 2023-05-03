@@ -2,11 +2,11 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function User(){
     const {data:session} = useSession();
-    console.log(session)
+    
     if(session){
         return(
             <>
-               <img onClick={signOut} src={session.user.image} alt={session.user.name} className="h-10 w-10 rounded-full cursor-pointer hover:bg-gray-200" p-1/>
+               <img onClick={signOut} src={session.user.image} alt={session.user.name} className="h-10 w-10 rounded-full cursor-pointer hover:bg-gray-200 p-1" />
             </>
         ) 
     }
