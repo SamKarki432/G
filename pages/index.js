@@ -1,14 +1,25 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import Header from '@/components/Header'
-import Image from 'next/image'
-import {SearchIcon, MicrophoneIcon} from "@heroicons/react/solid"
-import Footer from '@/components/Footer'
-
+import Head from 'next/head';
+import { Inter } from 'next/font/google';
+import Header from '@/components/Header';
+import Image from 'next/image';
+import {SearchIcon, MicrophoneIcon} from "@heroicons/react/solid";
+import Footer from '@/components/Footer';
+import { useRouter } from 'next/router';
+import { useRef } from 'react';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const router = useRouter();
+  const searchInputRef = useRef(null);
+
+  function gsearch(event){
+    event.preventDefault();
+    const term = searchInputRef.current.value;
+    if(!term.trim()) return;
+    router.push(`/search?term=${term.trim()}`);
+  }
+
   return (
     <>
       <Head>
@@ -26,17 +37,18 @@ export default function Home() {
          width="300"
          height="100"
          objectFit="cover"
+         alt="google logo"
         />
 
         <div className='flex w-full mt-5 items-center mx-auto max-w-[90%] border border-gray-300 hover:shadow-lg 
           focus-within:shadow-lg px-5 py-2 rounded-full sm:max-w-xl lg:max-w-2xl'>
           <SearchIcon className="h-6 w-6 text-gray-500 mr-3"/>
-          <input type="text" className='flex-grow focus:outline-none'/>
+          <input ref={searchInputRef} type="text" className='flex-grow focus:outline-none'/>
           <MicrophoneIcon className="h-5 w-6 text-gray-500"/>
         </div>
 
         <div className='flex flex-col md:flex-row mt-5 space-y-2 md:space-x-4 md:space-y-0'>
-          <button className='btn'>Google Search</button>
+          <button onClick={gsearch} className='btn'>Google Search</button>
           <button className='btn'>I'm feeling lucky</button>
         </div>
         
