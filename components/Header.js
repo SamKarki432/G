@@ -1,6 +1,7 @@
 import User from "./User";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ViewGridIcon , ViewGridAddIcon} from "@heroicons/react/solid";
 
 export default function Header(){
     const router = useRouter();
@@ -26,6 +27,7 @@ export default function Header(){
                         Images
                     </a>
                     
+                    <ViewGridIcon className="h-5 hover:cursor-pointer"/>
                      <User/>
                 </div>
             </header>
