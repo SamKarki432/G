@@ -1,4 +1,5 @@
 import Response from "@/Response";
+import ImageResults from "@/components/ImageResults";
 import SearchHeader from "@/components/SearchHeader";
 import SearchHeaderOptions from "@/components/SearchHeaderOptions";
 import SearchResults from "@/components/SearchResults";
@@ -18,7 +19,13 @@ export default function Search({results}){
        <SearchHeader/>
        <SearchHeaderOptions/>
 
-       <SearchResults results={results}/>
+        {router.query.searchType === "image"?(
+            <ImageResults results={results}/>
+        ):
+        (
+            <SearchResults results={results}/>
+        )}
+       
 
     </>
     )

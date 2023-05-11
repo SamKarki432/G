@@ -19,7 +19,13 @@ export default function Home() {
     if(!term.trim()) return;
     router.push(`/search?term=${term.trim()}&searchType=`);
   }
-
+  
+  async function randomSearch(event){
+    event.preventDefault();
+    const term = await fetch("https://random-word-api.herokuapp.com/word?number=1").then((response)=>response.json())
+    if(!term) return;
+    router.push(`/search?term=${term}&searchType=`);
+  }
   return (
     <>
       <Head>
@@ -40,7 +46,7 @@ export default function Home() {
          alt="google logo"
         />
 
-        <p className="text-sm italic">Not an official google website.Created for learning purposes.</p>
+        <p className="text-sm italic">Not the official google website.Created for learning purposes.</p>
 
         <div className='flex w-full mt-5 items-center mx-auto max-w-[90%] border border-gray-300 hover:shadow-lg 
           focus-within:shadow-lg px-5 py-2 rounded-full sm:max-w-xl lg:max-w-2xl'>
@@ -51,7 +57,7 @@ export default function Home() {
 
         <div className='flex flex-col md:flex-row mt-5 space-y-2 md:space-x-4 md:space-y-0'>
           <button onClick={gsearch} className='btn'>Google Search</button>
-          <button className='btn'> I&apos;m feeling lucky</button>
+          <button onClick={randomSearch} className='btn'> I&apos;m feeling lucky</button>
         </div>
         
       </form>

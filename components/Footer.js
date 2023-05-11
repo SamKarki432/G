@@ -5,7 +5,7 @@ export default function Footer(){
         <>
             <footer className="absolute bottom-0 left-[50%] translate-x-[-50%]
             whitespace-nowrap p-5 text-sm text-gray-600">
-                <p>Copyright &copy; {new Date().getFullYear()} Made By Samrakshan Karki</p>
+                <p> Made By Samrakshan Karki {new Date().getFullYear()} </p>
             </footer>
         </>
     )
